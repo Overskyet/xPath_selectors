@@ -1,0 +1,62 @@
+------------------------------------
+Поиск элемента по одному из нескольких значений атрибута <div class="atag btag"></div>
+------------------------------------
+//*[contains(concat(' ', normalize-space(@class), ' '), ' atag ')]
+------------------------------------
+
+//*[class("header")]//*[class("button") and text()="Редактировать"]
+
+Курсор превращается в руку: css --> cursor:pointer (применять к элементу, при наведении на который курсор должен менять свой внешний вид)
+
+------------------------------------
+Посчитать количество элементов, соответствующих определённым критериям
+------------------------------------
+ЗапомнитьКоличество элементов//*[class("table-row-view") and .//*[class("info__status") and normalize-space(text())="Недостаточно прав"]]//*[class("timeline-cell__control") and .//button/*[normalize-space(text())="Запросить"]]
+
+Количество элементов//*[class("table-row-view")]равно (=)${#40.value}
+------------------------------------
+
+------------------------------------
+Примеры условий в xpath и пример regex, в котором есть условие or
+------------------------------------
+//*[class("SearchForm")]//*[class("SearchFormHint") and descendant-or-self::*[normalize-space(text())="Київ – Львів"]]
+https://rasp.crowdtest.yandex.ua/search/?fromId=c143&fromName=%D0%9A%D0%B8%D1%97%D0%B2&toId=c157&toName=%D0%9C%D1%96%D0%BD%D1%81%D1%8C%D0%BA&when=%D1%81%D1%8C%D0%BE%D0%B3%D0%BE%D0%B4%D0%BD%D1%96
+
+regex --> /^(https://rasp\.crowdtest\.yandex\.ua\/search\/\?fromId\=c143\&fromName\=\%D0\%9A\%D0\%B8\%D0\%B5\%D0\%B2\&lang\=ru\&toId\=c157\&toName\=\%D0\%9C\%D0\%B8\%D0\%BD\%D1\%81\%D0\%BA\&when\=\%D1\%81\%D0\%B5\%D0\%B3\%D0\%BE\%D0\%B4\%D0\%BD\%D1\%8F|https://rasp\.crowdtest\.yandex\.ua\/search\/\?fromId\=c143\&fromName\=\%D0\%9A\%D0\%B8\%D1\%97\%D0\%B2\&toId\=c157\&toName\=\%D0\%9C\%D1\%96\%D0\%BD\%D1\%81\%D1\%8C\%D0\%BA\&when\=\%D1\%81\%D1\%8C\%D0\%BE\%D0\%B3\%D0\%BE\%D0\%B4\%D0\%BD\%D1\%96)$/
+------------------------------------
+
+------------------------------------
+Пример not equal в regex
+------------------------------------
+/^((?!your_value).)*$/
+------------------------------------
+
+------------------------------------
+В выпадающем списке присутствуют значения: Все (выбран по умолчанию) Не оплачен Оплачен
+------------------------------------
+//*[class("xf-group")]//*[normalize-space(text())="Оплата:"]/following-sibling::*//*[contains(@name,"payment_status")]//*[normalize-space(text())="Все" and @selected]
+
+//*[class("xf-group")]//*[normalize-space(text())="Оплата:"]/following-sibling::*//*[contains(@name,"payment_status")]//*[normalize-space(text())="Не оплачен" and not(@selected)]
+
+//*[class("xf-group")]//*[normalize-space(text())="Оплата:"]/following-sibling::*//*[contains(@name,"payment_status")]//*[normalize-space(text())="Оплачен" and not(@selected)]
+------------------------------------
+
+------------------------------------
+Найти элементы, значение которых больше нуля (перевод текста в число) (!решить проблему одного потерянного элемента!)(кейс-BALANCE-6)
+------------------------------------
+//*[class("report")]//*/*[class("money")][1]//*[class("money") and boolean(number(substring-before(., ",")) > 0)]
+------------------------------------
+
+
+------------------------------------
+Пример использования xPath Union | (Виден или первый элемент или второй)
+------------------------------------
+Виден элемент//*[class("prj_new")]//*[class("wizard-suggest")]//*[normalize-space(text())="Попробовать"] | //*[text()="Новый проект"]/parent::*
+------------------------------------
+
+
+
+
+
+
+//*[class("projects-header")]//*[class("button_mode_dropdown") and descendant-or-self::*[normalize-space(text())='Активные']]
